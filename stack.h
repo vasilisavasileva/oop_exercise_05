@@ -39,7 +39,7 @@ namespace containers {
 		void delete_by_index(size_t N);
 		void insert_by_it(forward_iterator ins_it, T& value);
 		void insert_by_index(size_t N, T& value);
-		void print_by_index(size_t N);
+		//void print_by_index(size_t N);
 		stack& operator=(stack& other);
 	private:
 		struct element {
@@ -137,7 +137,9 @@ namespace containers {
 			throw std::logic_error("out of borders");
 		}
 		if (d_it == this->begin()) {
-			this->pop();
+			std::unique_ptr<element> tmp;
+			tmp = std::move(first->next_element);
+			first = std::move(tmp);
 			return;
 		}
 		while ((i.it_ptr != nullptr) && (i.it_ptr->next() != d_it)) {
@@ -189,14 +191,14 @@ namespace containers {
 		this->insert_by_it(it, value);
 	}
 
-	template<class T>
+	/*template<class T>
 	void stack<T>::print_by_index(size_t N) {
 		forward_iterator it = this->begin();
 		for (size_t i = 0; i < N; ++i) {
 			++it;
 		}
 		it.it_ptr->value.Print(std::cout);
-	}
+	}*/
 
 	template<class T>
 	typename stack<T>::forward_iterator stack<T>::element::next() {

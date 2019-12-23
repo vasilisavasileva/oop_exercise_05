@@ -21,7 +21,7 @@ void DeleteMenu() {
 void PrintMenu() {
 	std::cout << "1. Вывести первую фигуру в стеке\n";
 	std::cout << "2. Вывести последнюю фигуру в стеке\n";
-	std::cout << "3. Вывести фигуру по индексу\n";
+	//std::cout << "3. Вывести фигуру по индексу\n";
 }
 
 int main() {
@@ -69,10 +69,10 @@ int main() {
 				Mystack.top().Print(std::cout);
 				std::cout << std::endl;
 				break;
-			case 3:
+			/*case 3:
 				std::cin >> in;
 				Mystack.print_by_index(in);
-				break;
+				break;*/
 			default:
 				break;
 			}
