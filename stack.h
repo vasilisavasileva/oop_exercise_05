@@ -39,6 +39,7 @@ namespace containers {
 		void delete_by_index(size_t N);
 		void insert_by_it(forward_iterator ins_it, T& value);
 		void insert_by_index(size_t N, T& value);
+		void print_by_index(size_t N);
 		stack& operator=(stack& other);
 	private:
 		struct element {
@@ -150,8 +151,7 @@ namespace containers {
 	template<class T>
 	void stack<T>::delete_by_index(size_t N) {
 		forward_iterator it = this->begin();
-		for (size_t i = 1; i <= N; ++i) {
-			if (i == N) break;
+		for (size_t i = 0; i < N; ++i) {
 			++it;
 		}
 		this->delete_by_it(it);
@@ -176,14 +176,26 @@ namespace containers {
 		size++;
 	}
 
+
 	template<class T>
 	void stack<T>::insert_by_index(size_t N, T& value) {
 		forward_iterator it = this->begin();
+		if (N >= this->length())
+			it = this->end();
+		else
 		for (size_t i = 1; i <= N; ++i) {
-			if (i == N) break;
 			++it;
 		}
 		this->insert_by_it(it, value);
+	}
+
+	template<class T>
+	void stack<T>::print_by_index(size_t N) {
+		forward_iterator it = this->begin();
+		for (size_t i = 0; i < N; ++i) {
+			++it;
+		}
+		it.it_ptr->value.Print(std::cout);
 	}
 
 	template<class T>
